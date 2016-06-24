@@ -2,16 +2,22 @@
 
 ### à rendre pour le 20 juillet 2016.
 
-Le projet ci dessous vous fournit une structure de projet classique pour un projet Web avec une partie serveur en Java et une partie cliente qui utilise AngularJS.
+Le projet ci-dessous vous fournit une structure de projet classique pour un projet Web avec une partie serveur en Java et une partie cliente qui utilise AngularJS.
 
 La partie serveur expose ses APIs sous la forme de service Rest.
 
-La documentation est donnée à l'aide de swagger.
+La documentation est donnée à l'aide de [swagger](http://swagger.io/).
 
 ##Etape 1.
 Testez l'application.
 
 Cloner le repository
+
+```bash
+git clone
+https://github.com/barais/DUDCLJEETP.git
+```
+
 
 Lancez la base de données
 
@@ -28,11 +34,11 @@ show-hsqldb.bat #sous windows
 
 Si tout est ok. Préparons maintenant l'application.
 
-Dans la ligne de commande npm.
+Dans la ligne de commande npm. Il faut installez nodejs pour windows.
 ```bash
 cd src/main/webapp
 npm i
-npm -g bower bower-cli
+npm install -g grunt-cli bower yo generator-karma generator-angular
 bower i
 ```
 
@@ -42,13 +48,13 @@ Il y a une classe JpaTest.java qui permet de peupler la base. Lancez le main de 
 
 Il y a une classe src/main/java/app/RestApplication.java qui permet de lancez le serveur Web.
 
-La structuration en package sépare clairement les classes métiers (package domain), les classes DAO (package repository), les classes de services (package web.rest).
+La structuration en packages sépare clairement les classes métier (package domain), les classes DAO (package repository), les classes de services (package web.rest).
 
 Une fois l'application lancez, testez cette application.
 
 http://localhost:8080 doit vous donner accès à l'application
 http://localhost:8080/department doit vous donner accès aux flux json retourner pour obtenir la liste des départements.
-
+http://localhost:8080/api/ vous donne accès à swagger.
 
 
 ##Travail à faire.
@@ -65,5 +71,9 @@ Prenez la liberté de compléter ce modèle métier au maximum.
 
 1. Développez ce modèle métier dans le package domain.
 2. Développez les classes repository contenant les actions de base à faire sur la base de données pour chacune de ces classes métiers.
-3. Développez une couche de service pour cette application dans le package (web.rest). Vous devrez modifier la classe RestApplication pour ajoutez vos nouvelles ressources. 
+3. Développez une couche de service pour cette application dans le package (web.rest). Vous devrez modifier la classe RestApplication pour ajoutez vos nouvelles ressources.
 4. Développez une interface angularjs simple qui intéragit avec vos services.
+
+N'hésitez pas à me contacter en cas de difficultés.
+
+Olivier
