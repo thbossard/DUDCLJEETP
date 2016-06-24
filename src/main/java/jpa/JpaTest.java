@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 public class JpaTest {
 
 	/**
-	 * @param args
+	 * Classe de test pour peupler la base
 	 */
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");

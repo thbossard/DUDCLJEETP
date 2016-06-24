@@ -17,12 +17,10 @@ import web.rest.SwaggerResource;
 public class RestApplication extends Application {
 
     public static void main(String[] args) {
-        UndertowJaxrsServer server = new UndertowJaxrsServer();
+
+    	//Initialisation du serveur (port, prefix pour l'app, ...)
+    	UndertowJaxrsServer server = new UndertowJaxrsServer();
         server.deploy(new RestApplication());
-        //ResourceHandler handler= io.undertow.Handlers.resource(new FileResourceManager(new File("src/main/webapp"), 1024));
-        
-        
-        
         BeanConfig beanConfig = new BeanConfig();
         beanConfig.setVersion("0.0.0-alpha");
         beanConfig.setSchemes(new String[]{"http"});
@@ -33,6 +31,7 @@ public class RestApplication extends Application {
         beanConfig.setPrettyPrint(true);
         
 
+    	//Démarrage du serveur 
         server.start(Undertow.builder().addHttpListener(8080, "0.0.0.0"));
     }
 
@@ -48,6 +47,8 @@ public class RestApplication extends Application {
         resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
         resources.add(SwaggerResource.class);
+
+        // Simple Web Server (for static file Endpoints)
         resources.add(StaticResource.class);
 
         return resources;
