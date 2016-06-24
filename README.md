@@ -52,10 +52,13 @@ La structuration en packages sépare clairement les classes métier (package dom
 
 Une fois l'application lancez, testez cette application.
 
-http://localhost:8080 doit vous donner accès à l'application
-http://localhost:8080/department doit vous donner accès aux flux json retourner pour obtenir la liste des départements.
-http://localhost:8080/api/ vous donne accès à swagger.
+[http://localhost:8080](http://localhost:8080) doit vous donner accès à l'application
+[http://localhost:8080/department](http://localhost:8080/department) doit vous donner accès aux flux json retourner pour obtenir la liste des départements.
+[http://localhost:8080/api/](http://localhost:8080/api/) vous donne accès à swagger.
 
+Le code de l'appli angularjs se trouve dans src/main/webapp/app/
+
+Cette application a été générée en utilisant [yeoman](http://yeoman.io/) et le [générateur pour AngularJS](https://github.com/yeoman/generator-angular).
 
 ##Travail à faire.
 
