@@ -11,6 +11,7 @@ import io.swagger.jaxrs.config.BeanConfig;
 import io.undertow.Undertow;
 import web.rest.DepartementResource;
 import web.rest.EmployeeResource;
+import web.rest.PersonResource;
 import web.rest.StaticResource;
 import web.rest.SwaggerResource;
 
@@ -40,9 +41,9 @@ public class RestApplication extends Application {
         final Set<Class<?>> resources = new HashSet<>();
 
         // REST endpoints
-        resources.add(DepartementResource.class);
-        resources.add(EmployeeResource.class);
-
+        //resources.add(DepartementResource.class);
+        //resources.add(EmployeeResource.class);
+        resources.add(PersonResource.class);
         // SWAGGER endpoints
         resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);

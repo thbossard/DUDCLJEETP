@@ -21,14 +21,15 @@ public class JpaTest {
 		tx.begin();
 		try {
 			Department d = new Department();
-			d.setName("yolo");
+			d.setName("dept1");
 			manager.persist(d);
 
 			Employee e = new Employee();
 			e.setName("John");
 			e.setDepartment(d);
 			manager.persist(e);
-
+						
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
