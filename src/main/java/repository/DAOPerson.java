@@ -64,19 +64,18 @@ public class DAOPerson extends EntityManagerHelper{
 	
 	public Optional<Person> findOneByName(String name) {
 		EntityManager em = getEntityManager();  
-		EntityTransaction tx = null;
 		Optional<Person> person = Optional.empty();
-		        //try {
+		    try {
 	            person = Optional.of(em.createQuery("SELECT p from Person p WHERE p.personLName = :name", Person.class)
 	                    .setParameter("name", name)
 	                    .getSingleResult());
 
-	        //} catch (Exception re){
-			//	System.out.println("Error : canceling changes...");
+	        } catch (Exception re){
+	        	System.out.println("Error : canceling changes...");
 				
-			//}finally{
+			}finally{
 				closeEntityManager();
-			//}
+			}
 			return person;
 	}
 	

@@ -23,14 +23,10 @@ import java.util.ArrayList;
 @Table(name="PERSON")
 @Entity
 public class Person {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+		
 	private int personId;
 	private String personLName;
-	private String personFname;
+	private String personFName;
 	private String personMail;
 	private List<Home> personHomes;
 			
@@ -38,10 +34,10 @@ public class Person {
 		
 	}
 
-	public Person(String personLName, String personFname, String personMail) {
+	public Person(String personLName, String personFName, String personMail) {
 		super();
 		this.personLName = personLName;
-		this.personFname = personFname;
+		this.personFName = personFName;
 		this.personMail = personMail;
 		
 	}
@@ -68,11 +64,11 @@ public class Person {
 	
 	@Column(name="PERSON_FNAME")
 	public String getPersonFname() {
-		return personFname;
+		return personFName;
 	}
 
-	public void setPersonFname(String personFname) {
-		this.personFname = personFname;
+	public void setPersonFname(String personFName) {
+		this.personFName = personFName;
 	}
 	
 	@Column(name="PERSON_MAIL")
@@ -84,7 +80,7 @@ public class Person {
 		this.personMail = personMail;
 	}
 
-	@OneToMany(mappedBy = "homePerson",cascade=CascadeType.PERSIST,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "homePerson",cascade = {CascadeType.PERSIST, CascadeType.REMOVE},fetch = FetchType.LAZY)
 	public List<Home> getPersonHomes() {
 		return personHomes;
 	}

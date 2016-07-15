@@ -41,8 +41,8 @@ public class RestApplication extends Application {
         final Set<Class<?>> resources = new HashSet<>();
 
         // REST endpoints
-        //resources.add(DepartementResource.class);
-        //resources.add(EmployeeResource.class);
+        resources.add(DepartementResource.class);
+        resources.add(EmployeeResource.class);
         resources.add(PersonResource.class);
         // SWAGGER endpoints
         resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);

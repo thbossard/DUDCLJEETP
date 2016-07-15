@@ -29,9 +29,16 @@ public class App
 				
 		home1.addHomeHeaters(h1);
 		home1.addHomeHeaters(h2);
+		home2.addHomeHeaters(h2);
+		home2.addHomeHeaters(h3);
+		home3.addHomeHeaters(h4);
+		home3.addHomeHeaters(h5);
 		
 		HeaterDao.update(h1);
 		HeaterDao.update(h2);
+		HeaterDao.update(h3);
+		HeaterDao.update(h4);
+		HeaterDao.update(h5);
 		
 		home1.addHomeElecDevices(d1);
 		home1.addHomeElecDevices(d2);
@@ -39,19 +46,27 @@ public class App
 		DeviceDao.update(d1);
 		DeviceDao.update(d2);
 		
+		
 		HomeDao.update(home1);
+		HomeDao.update(home2);
+		HomeDao.update(home3);
 		
 		DAOPerson persDao = new DAOPerson();
 		Person p = persDao.createPerson("Dupond","Jean","jean.dupond@gmail.com");
-		p.setPersonLName("Durand");
-				
+		//p.setPersonLName("Durand");
+		Person p1 = persDao.createPerson("Bossard","Thierry","th.bossard35@gmail.com");
+		
+		
 		p.addpersonHome(home1);
 		p.addpersonHome(home2);
+		p1.addpersonHome(home3);
+		
 		persDao.update(p);
-	
+		persDao.update(p1);
+		
 		HomeDao.update(home1);
 		HomeDao.update(home2);
-		
+		HomeDao.update(home3);
 		
     }
 

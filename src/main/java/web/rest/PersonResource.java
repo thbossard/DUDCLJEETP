@@ -22,9 +22,7 @@ public class PersonResource {
     private DAOPerson PersonRepository = new DAOPerson();
 
     @GET
-    //@Path(value = "{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    //public Response get(@PathParam("name") String name) {
     public List<Person> getAll(){
     
     	return PersonRepository.findAll();

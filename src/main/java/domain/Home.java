@@ -2,14 +2,20 @@ package domain;
 
 import java.util.List;
 import java.util.ArrayList;
-
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import domain.util.CustomHomeSerializer;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import javax.persistence.OneToMany;
 import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
@@ -18,9 +24,9 @@ import javax.persistence.JoinColumn;
 
 @Table(name="HOME")
 @Entity
-public class Home implements Serializable {
+//implements Serializable
+public class Home {
 	
-	private static final long serialVersionUID = 1L;
 	private int homeId;
 	private String homeName;
 	private String homeType;
@@ -87,7 +93,9 @@ public class Home implements Serializable {
 	public void setHomeRoomCount(int homeRoomCount) {
 		this.homeRoomCount = homeRoomCount;
 	}
-
+	
+	@Column(nullable = true)
+	@JsonManagedReference
 	@OneToMany(mappedBy = "heaterHome",cascade=CascadeType.PERSIST,fetch = FetchType.LAZY)
 	public List<Heater> getHomeHeaters() {
 		return homeHeaters;
@@ -107,6 +115,8 @@ public class Home implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="PERSON_ID")
+	@JsonSerialize(using = CustomHomeSerializer.class)
+	@JsonBackReference
 	public Person getHomePerson() {
 		return homePerson;
 	}
@@ -117,6 +127,8 @@ public class Home implements Serializable {
 	
 	
 	@OneToMany(mappedBy = "deviceHome",cascade=CascadeType.PERSIST,fetch = FetchType.LAZY)
+	@Column(nullable = true)
+    @JsonManagedReference
 	public List<ElecDevices> getHomeElecDevices() {
 		return homeElecDevices;
 	}

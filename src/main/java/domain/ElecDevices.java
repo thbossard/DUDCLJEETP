@@ -1,5 +1,5 @@
 package domain;
-import java.io.Serializable;
+//import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,17 +7,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import domain.Home;
+import domain.util.CustomElecDevicesSerializer;
 
+//implements Serializable
 @Table(name="ELECDEVICES")
 @Entity
-public class ElecDevices implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class ElecDevices  {
+	
 	private int deviceId;
 	private String deviceName;
 	private int deviceAvConso;
@@ -62,6 +66,8 @@ public class ElecDevices implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="HOME_ID")
+	@JsonBackReference
+	@JsonSerialize(using = CustomElecDevicesSerializer.class)
 	public Home getDeviceHome() {
 		return deviceHome;
 	}

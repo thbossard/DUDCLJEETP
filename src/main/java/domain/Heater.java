@@ -1,6 +1,5 @@
 package domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,16 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
-
+import domain.util.CustomHeaterSerializer;
 
 @Table(name="HEATER")
 @Entity
-public class Heater implements Serializable{
+public class Heater{
 		
-	private static final long serialVersionUID = -5879255673979479641L;
 	private int heaterId;
 	private String heaterName = null;
 	private int heaterConso;
@@ -64,6 +67,8 @@ public class Heater implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name="HOME_ID")
+	@JsonBackReference
+	@JsonSerialize(using = CustomHeaterSerializer.class)
 	public Home getHeaterHome(){
 		return heaterHome;
 	}

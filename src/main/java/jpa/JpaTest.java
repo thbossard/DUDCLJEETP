@@ -21,11 +21,11 @@ public class JpaTest {
 		tx.begin();
 		try {
 			Department d = new Department();
-			d.setName("dept1");
+			d.setName("dept3");
 			manager.persist(d);
 
 			Employee e = new Employee();
-			e.setName("John");
+			e.setName("Gérard");
 			e.setDepartment(d);
 			manager.persist(e);
 						

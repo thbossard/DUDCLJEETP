@@ -40,26 +40,54 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="mysql">
-        <properties>
+    <persistence-unit name="db_opower">
+       <class>domain.Heater</class>
+	   <class>domain.Home</class>
+	   <class>domain.ElecDevices</class>
+	   <class>domain.Person</class>
+		<properties>
             <!--
             <property name="hibernate.ejb.cfgfile" value="/hibernate.cfg.xml"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
             -->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.archive.autodetection" value="class, hbm"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.password" value="yourpass"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/testjpa"/>
             <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/db_opower?createDatabaseIfNotExist=true"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.c3p0.min_size" value="5"/>
             <property name="hibernate.c3p0.max_size" value="20"/>
             <property name="hibernate.c3p0.timeout" value="300"/>
             <property name="hibernate.c3p0.max_statements" value="50"/>
             <property name="hibernate.c3p0.idle_test_period" value="3000"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true" />
         </properties>
     </persistence-unit>
-
+	<persistence-unit name="db_dev">
+       <!-- <class>domain.Heater</class>
+		<class>domain.Home</class>
+		<class>domain.ElecDevices</class>
+		<class>domain.Person</class> -->
+        <properties>
+            <!--
+            <property name="hibernate.ejb.cfgfile" value="/hibernate.cfg.xml"/>
+            -->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.archive.autodetection" value="class, hbm"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/db_dev?createDatabaseIfNotExist=true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.c3p0.min_size" value="5"/>
+            <property name="hibernate.c3p0.max_size" value="20"/>
+            <property name="hibernate.c3p0.timeout" value="300"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="3000"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+        </properties>
+    </persistence-unit>
 </persistence>
