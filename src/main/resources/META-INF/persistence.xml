@@ -41,10 +41,10 @@
     </persistence-unit>
 
     <persistence-unit name="db_opower">
-       <class>domain.Heater</class>
+       <!-- <class>domain.Heater</class>
 	   <class>domain.Home</class>
 	   <class>domain.ElecDevices</class>
-	   <class>domain.Person</class>
+	   <class>domain.Person</class>  -->
 		<properties>
             <!--
             <property name="hibernate.ejb.cfgfile" value="/hibernate.cfg.xml"/>

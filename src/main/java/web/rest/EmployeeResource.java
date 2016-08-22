@@ -24,4 +24,5 @@ public class EmployeeResource {
             .map(e -> Response.ok().entity(e).build())
             .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
+    
 }

@@ -63,10 +63,10 @@ public class App
 		p.addpersonHome(home1);
 		p.addpersonHome(home2);
 		p1.addpersonHome(home3);
-		p.addMyFriends(p1);
-		p.addMyFriends(p2);
-		p.addMyFriends(p3);
-		p.addMyFriends(p4);
+		//p.addMyFriends(p1);
+		//p.addMyFriends(p2);
+		//p.addMyFriends(p3);
+		//p.addMyFriends(p4);
 				
 		
 		persDao.update(p);

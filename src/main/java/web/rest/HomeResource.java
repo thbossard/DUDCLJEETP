@@ -16,8 +16,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.FormParam;
 
 @Path("/homes")
@@ -35,14 +33,14 @@ public class HomeResource {
     }
 			
 	@GET 
-	@Path("find/{id}") 
+	@Path("{id}") 
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Home getById(@PathParam("id") String HomeId){
 		return HomeRepository.findById(Integer.parseInt(HomeId));
 	}
 	
 	@GET 
-	@Path("find/person/{id}") 
+	@Path("/person/{id}") 
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<Home> getByPersonId(@PathParam("id") String p){
 		return HomeRepository.findByPersonId(p);
@@ -56,25 +54,31 @@ public class HomeResource {
     } 
 	
 	 @POST
-	 @Consumes({ MediaType.APPLICATION_JSON }) 
+	 @Consumes(MediaType.APPLICATION_JSON)
+	 @Produces(MediaType.APPLICATION_JSON)
 	 	public void createHome(Home h) { 
 		 	HomeRepository.createHome(h.getHomeName(),h.getHomeType(),h.getHomeSize(), h.getHomeRoomCount());
 	    } 
 	
-	 @POST @Path("{id}/device/")
+	 @POST @Path("/device/{id}")
+	 @Consumes(MediaType.APPLICATION_JSON)
+	 @Produces(MediaType.APPLICATION_JSON)
 	    public void createHomeDevice(@PathParam("id") int deviceId,@FormParam("name") String deviceName,
 	    		@FormParam("conso") int deviceConso) { 
 				HomeRepository.createHomeDevice(deviceId, deviceName, deviceConso);
 		}
 	 	 
-	 @POST @Path("{id}/heater/")
+	 @POST @Path("/heater/{id}")
+	 @Consumes(MediaType.APPLICATION_JSON)
+	 @Produces(MediaType.APPLICATION_JSON)
 	    public void createHomeHeater(@PathParam("id") int heaterId,@FormParam("name") String HeaterName,
 	    		@FormParam("conso") int heaterConso) { 
 				HomeRepository.createHomeHeater(heaterId, HeaterName, heaterConso);
 	    }
 	 
 	 @PUT //update des maisons
-		@Consumes({ MediaType.APPLICATION_JSON }) 
+	 @Consumes(MediaType.APPLICATION_JSON)
+	 @Produces(MediaType.APPLICATION_JSON)
 		public void majHome(Home h){
 			Home majh = HomeRepository.findById(h.getHomeId());
 			if (majh != null) { //l'Id existe...
@@ -84,7 +88,8 @@ public class HomeResource {
 			}
 		}	
 	 //suppression sous condition
-	 @DELETE @Path("remove/{id}") 
+	 @DELETE @Path("{id}") 
+	 @Produces(MediaType.APPLICATION_JSON)
 		public void deleteById(@PathParam("id") String homeId) { 
 			Home tmpId = HomeRepository.findById(Integer.parseInt(homeId));
 			// Le homeId doit exister pour être supprimé

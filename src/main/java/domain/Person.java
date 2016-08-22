@@ -33,8 +33,8 @@ public class Person {
 	private String personFName;
 	private String personMail;
 	private List<Home> personHomes;
-	private List<Person> myPersons;
-	private List<Person> myFriends;
+	//private List<Person> myPersons;
+	//private List<Person> myFriends;
 	
 	public Person(){
 		
@@ -103,41 +103,42 @@ public class Person {
 		ph.setHomePerson(this);
 	}
 
-	@ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(name="FRIENDS",
-			joinColumns={@JoinColumn(name="PERSON_ID")},
-			inverseJoinColumns={@JoinColumn(name="FRIEND_ID")})
-	public List<Person> getMyPersons () {
-		return myPersons;
-	}
+	//@ManyToMany(cascade={CascadeType.ALL})
+	//tentative de creation de la table Friends en mode selfjoin many to many
+	//@JoinTable(name="FRIENDS",
+	//		joinColumns={@JoinColumn(name="PERSON_ID")},
+	//		inverseJoinColumns={@JoinColumn(name="FRIEND_ID")})
+	//public List<Person> getMyPersons () {
+	//	return myPersons;
+	//}
 
-	public void setMyPersons(List<Person> myPersons){
-		this.myPersons = myPersons;
-	}
+	//public void setMyPersons(List<Person> myPersons){
+	//	this.myPersons = myPersons;
+	//}
 
-	public void addMyPersons(Person p){
-		if (myPersons == null){
-			myPersons = new ArrayList<Person>();
-		}
-		myPersons.add(p);
-		p.setMyPersons(myPersons);
-	}
+	//public void addMyPersons(Person p){
+	//	if (myPersons == null){
+	//		myPersons = new ArrayList<Person>();
+	//	}
+	//	myPersons.add(p);
+	//	p.setMyPersons(myPersons);
+	//}
 	
-	@ManyToMany(mappedBy="myPersons")
-	public List<Person> getMyFriends () {
-		return myFriends;
-	}
+	//@ManyToMany(mappedBy="myPersons")
+	//public List<Person> getMyFriends () {
+	//	return myFriends;
+	//}
 	
 	
-	public void setMyFriends(List<Person> myFriends){
-		this.myFriends = myFriends;
-	}
+	//public void setMyFriends(List<Person> myFriends){
+	//	this.myFriends = myFriends;
+	//}
 
-	public void addMyFriends(Person p){
-		if (myFriends == null){
-			myFriends = new ArrayList<Person>();
-		}
-		myFriends.add(p);
-		p.setMyFriends(myFriends);
-	}
+	//public void addMyFriends(Person p){
+	// if (myFriends == null){
+	//		myFriends = new ArrayList<Person>();
+	//	}
+	//	myFriends.add(p);
+	//	p.setMyFriends(myFriends);
+	//}
 }

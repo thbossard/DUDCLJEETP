@@ -97,8 +97,8 @@ public class Home {
 	}
 	
 	@Column(nullable = true)
-	//@JsonIgnore
-	@JsonManagedReference
+	@JsonIgnore
+	//@JsonManagedReference
 	@OneToMany(mappedBy = "heaterHome",cascade=CascadeType.PERSIST,fetch = FetchType.LAZY)
 	public List<Heater> getHomeHeaters() {
 		return homeHeaters;
@@ -119,7 +119,8 @@ public class Home {
 	@ManyToOne
 	@JoinColumn(name="PERSON_ID")
 	@JsonSerialize(using = CustomHomeSerializer.class)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	public Person getHomePerson() {
 		return homePerson;
 	}
@@ -131,7 +132,8 @@ public class Home {
 	
 	@OneToMany(mappedBy = "deviceHome",cascade=CascadeType.PERSIST,fetch = FetchType.LAZY)
 	@Column(nullable = true)
-    @JsonManagedReference
+    //@JsonManagedReference
+	@JsonIgnore
 	public List<ElecDevices> getHomeElecDevices() {
 		return homeElecDevices;
 	}
