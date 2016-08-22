@@ -27,6 +27,7 @@ public class App
 		Home home2 = HomeDao.createHome("Mon logement 2","Maison",1120,14);
 		Home home3 = HomeDao.createHome("Mon Logement 4","Villa",2000,20);
 				
+		
 		home1.addHomeHeaters(h1);
 		home1.addHomeHeaters(h2);
 		home2.addHomeHeaters(h2);
@@ -55,14 +56,24 @@ public class App
 		Person p = persDao.createPerson("Dupond","Jean","jean.dupond@gmail.com");
 		//p.setPersonLName("Durand");
 		Person p1 = persDao.createPerson("Bossard","Thierry","th.bossard35@gmail.com");
-		
+		Person p2 = persDao.createPerson("Bossard","Thomas","thomas.bossard@gmail.com");
+		Person p3 = persDao.createPerson("Durand","Alain","alain.Durand@gmail.com");
+		Person p4 = persDao.createPerson("Bossard","Gérard","gs.bossard@orange.fr");
 		
 		p.addpersonHome(home1);
 		p.addpersonHome(home2);
 		p1.addpersonHome(home3);
+		p.addMyFriends(p1);
+		p.addMyFriends(p2);
+		p.addMyFriends(p3);
+		p.addMyFriends(p4);
+				
 		
 		persDao.update(p);
 		persDao.update(p1);
+		persDao.update(p2);
+		persDao.update(p3);
+		persDao.update(p4);
 		
 		HomeDao.update(home1);
 		HomeDao.update(home2);

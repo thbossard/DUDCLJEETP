@@ -6,8 +6,8 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import repository.EntityManagerHelper;
-import domain.Employee;
 import domain.Person;
+import domain.Home;
 
 public class DAOPerson extends EntityManagerHelper{
 	
@@ -81,7 +81,7 @@ public class DAOPerson extends EntityManagerHelper{
 	
 	
 	// delete active recordset person
-	public void deletePerson(Person activeP){
+	public void removePerson(Person activeP){
 		EntityManager em = getEntityManager();  
 		EntityTransaction tx = null;
 		try{
@@ -99,8 +99,8 @@ public class DAOPerson extends EntityManagerHelper{
 		}
 	}
 	//
-	public void deletePerson(String id){
-		deletePerson(findById(id));
+	public void deletePerson(int id){
+		removePerson(findById(id));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -121,7 +121,7 @@ public class DAOPerson extends EntityManagerHelper{
 		return results;
 	}
 
-	public Person findById(String id){
+	public Person findById(int id){
 		EntityManager em = getEntityManager();  
 		Person instance = null;
 		try{
@@ -154,4 +154,30 @@ public class DAOPerson extends EntityManagerHelper{
 		}
 		return p;
 	}
+
+	public Person updatePersonHome(int id, String name, String type, int size, int roomCount){
+		EntityManager em = getEntityManager();  
+		EntityTransaction tx = null;
+		Person person = findById(id);
+		try{
+			tx = em.getTransaction();
+			tx.begin();
+			System.out.println("maj person/home" + person.toString());
+			Home h = new Home (name,type,size,roomCount);
+			person.addpersonHome(h);
+			em.merge(person);
+			tx.commit();
+		}catch(Exception re)
+		{
+			if(tx!=null){
+				System.out.println("Something went wrong; Discard all partial changes");
+				tx.rollback();
+			}
+		}finally{
+			closeEntityManager();
+		}
+		return person;
+	}
+
+
 }

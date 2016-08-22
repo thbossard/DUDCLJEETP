@@ -16,7 +16,10 @@ import javax.persistence.Table;
 import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 
 import java.util.ArrayList;
 
@@ -25,11 +28,14 @@ import java.util.ArrayList;
 public class Person {
 		
 	private int personId;
+		
 	private String personLName;
 	private String personFName;
 	private String personMail;
 	private List<Home> personHomes;
-			
+	private List<Person> myPersons;
+	private List<Person> myFriends;
+	
 	public Person(){
 		
 	}
@@ -84,7 +90,7 @@ public class Person {
 	public List<Home> getPersonHomes() {
 		return personHomes;
 	}
-
+	
 	public void setPersonHomes(List<Home> personHomes) {
 		this.personHomes = personHomes;
 	}
@@ -97,6 +103,41 @@ public class Person {
 		ph.setHomePerson(this);
 	}
 
-	
+	@ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="FRIENDS",
+			joinColumns={@JoinColumn(name="PERSON_ID")},
+			inverseJoinColumns={@JoinColumn(name="FRIEND_ID")})
+	public List<Person> getMyPersons () {
+		return myPersons;
+	}
 
+	public void setMyPersons(List<Person> myPersons){
+		this.myPersons = myPersons;
+	}
+
+	public void addMyPersons(Person p){
+		if (myPersons == null){
+			myPersons = new ArrayList<Person>();
+		}
+		myPersons.add(p);
+		p.setMyPersons(myPersons);
+	}
+	
+	@ManyToMany(mappedBy="myPersons")
+	public List<Person> getMyFriends () {
+		return myFriends;
+	}
+	
+	
+	public void setMyFriends(List<Person> myFriends){
+		this.myFriends = myFriends;
+	}
+
+	public void addMyFriends(Person p){
+		if (myFriends == null){
+			myFriends = new ArrayList<Person>();
+		}
+		myFriends.add(p);
+		p.setMyFriends(myFriends);
+	}
 }

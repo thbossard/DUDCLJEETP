@@ -12,6 +12,7 @@ import io.undertow.Undertow;
 import web.rest.DepartementResource;
 import web.rest.EmployeeResource;
 import web.rest.PersonResource;
+import web.rest.HomeResource;
 import web.rest.StaticResource;
 import web.rest.SwaggerResource;
 
@@ -44,6 +45,7 @@ public class RestApplication extends Application {
         resources.add(DepartementResource.class);
         resources.add(EmployeeResource.class);
         resources.add(PersonResource.class);
+        resources.add(HomeResource.class);
         // SWAGGER endpoints
         resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);

@@ -5,7 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import repository.EntityManagerHelper;
+import domain.ElecDevices;
+import domain.Heater;
 import domain.Home;
+import domain.Person;
 
 public class DAOHome extends EntityManagerHelper{
 	
@@ -77,7 +80,7 @@ public class DAOHome extends EntityManagerHelper{
 		}
 	}
 	//
-	public void deleteHome(String id){
+	public void deleteHome(int id){
 		deleteHome(findById(id));
 	}
 	
@@ -99,11 +102,11 @@ public class DAOHome extends EntityManagerHelper{
 		return results;
 	}
 
-	public Home findById(String id){
+	public Home findById(int homeId){
 		EntityManager em = getEntityManager();  
 		Home instance = null;
 		try{
-			instance = em.find(Home.class, id);
+			instance = em.find(Home.class, homeId);
 		}catch (RuntimeException re){
 		throw re;
 		}finally{
@@ -131,5 +134,67 @@ public class DAOHome extends EntityManagerHelper{
 			closeEntityManager();
 		}
 		return Ho;
+	}
+	
+	public Home createHomeDevice(int deviceId, String deviceName, int deviceAvConso){
+		EntityManager em = getEntityManager();  
+		EntityTransaction tx = null;
+		Home home = findById(deviceId);
+			try{
+				tx = em.getTransaction();
+				tx.begin();
+				
+				ElecDevices d = new ElecDevices( deviceName, deviceAvConso );
+				home.addHomeElecDevices(d);
+				em.merge(home);
+				tx.commit();
+			}catch(Exception re)
+			{
+				if(tx!=null){
+					tx.rollback();
+				}
+			}finally{
+				closeEntityManager();
+			}
+		return home;
+	}
+		
+	public Home createHomeHeater(int heaterId, String heaterName, int heaterConso){
+		EntityManager em = getEntityManager();  
+		EntityTransaction tx = null;
+		Home home = findById(heaterId);
+			try{
+				tx = em.getTransaction();
+				tx.begin();
+				Heater h = new Heater( heaterName, heaterConso );
+				home.addHomeHeaters(h);
+				em.merge(home);
+				tx.commit();
+			}catch(Exception re)
+			{
+				if(tx!=null){
+					tx.rollback();
+				}
+			}finally{
+				closeEntityManager();
+			}
+		return home;
+	}
+	
+	
+	public List<Home> findByPersonId(String id){
+		EntityManager em = getEntityManager();  
+		Person instance = null;
+		List<Home> homes = null;
+		try{
+			instance = em.find(Person.class, id);
+			if (instance != null)
+				homes = instance.getPersonHomes();
+		}catch (RuntimeException re){
+		throw re;
+		}finally{
+			closeEntityManager();
+		}
+		return homes;
 	}
 }

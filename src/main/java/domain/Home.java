@@ -9,6 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+
 
 import domain.util.CustomHomeSerializer;
 import org.codehaus.jackson.annotate.JsonManagedReference;
@@ -16,11 +22,7 @@ import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+
 
 @Table(name="HOME")
 @Entity
@@ -95,6 +97,7 @@ public class Home {
 	}
 	
 	@Column(nullable = true)
+	//@JsonIgnore
 	@JsonManagedReference
 	@OneToMany(mappedBy = "heaterHome",cascade=CascadeType.PERSIST,fetch = FetchType.LAZY)
 	public List<Heater> getHomeHeaters() {
