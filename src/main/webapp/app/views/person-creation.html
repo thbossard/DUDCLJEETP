@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Ajouter une personne</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="lbFirstName">Nom:</label>
+
+            <div class="controls">
+                <input type="text" id="inputpersonFname" ng-model="person.personFname" placeholder="Nom"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="lbLastName">Prénom:</label>
+
+            <div class="controls">
+                <input type="text" id="inputpersonLname" ng-model="person.personLName" placeholder="Prénom"/>
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="lbMail">Mail:</label>
+
+            <div class="controls">
+                <input type="text" id="inputpersonMail" ng-model="person.personMail" placeholder="Mail"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="createNewPerson()" class="btn btn-small btn-primary">ajouter une persone</a>
+            </div>
+        </div>
+    </form>
+</div>

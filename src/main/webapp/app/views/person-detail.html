@@ -1,0 +1,35 @@
+<div class="container">
+    <h1>Fiche personne</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="lbFirstName">Nom:</label>
+
+            <div class="controls">
+                <input type="text" id="inputFName" ng-model="person.personFname"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="lbLastName">Prénom:</label>
+
+            <div class="controls">
+                <input type="text" id="inputLName" ng-model="person.personLName"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="lbMail">Mail:</label>
+
+            <div class="controls">
+                <input type="text" id="inputMail" ng-model="person.personMail"/>
+            </div>
+        </div>
+		
+		
+		<div class="control-group">
+            <div class="controls">
+                <a ng-click="cancel()" class="btn btn-small">Annuler</a>
+                <a ng-click="updatePerson()" class="btn btn-small btn-primary">Maj de la personne</a>
+            </div>
+        </div>
+    </form>
+</div>
