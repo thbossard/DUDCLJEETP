@@ -6,7 +6,7 @@ var app = angular.module('opower.controllers', []);
 
 app.controller('personListCtrl', ['$scope', 'PersonsFactory', 'PersonFactory', '$location',
     function ($scope, PersonsFactory, PersonFactory, $location) {
-
+		
         // callback for ng-click 'editPerson':
         $scope.editPerson = function (personId) {
             $location.path('/person-detail/' + personId);
@@ -24,6 +24,7 @@ app.controller('personListCtrl', ['$scope', 'PersonsFactory', 'PersonFactory', '
         };
 
         $scope.Persons = PersonsFactory.query();
+		console.log($scope.Persons);
     }]);
 
 app.controller('personDetailCtrl', ['$scope', '$routeParams', 'PersonFactory', '$location',
